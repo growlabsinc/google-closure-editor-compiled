@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+  <head>
+    <title>goog.editor Hello World plugins Demo</title>
+    <link rel="stylesheet" href="../node_modules/google-closure-library/closure/goog/demos/css/demo.css">
+    <link rel="stylesheet" href="../node_modules/google-closure-library/closure/goog/css/dialog.css" />
+    <style>
+      #editMe {
+        width: 600px;
+        height: 300px;
+        background-color: white;
+        border: 1px solid grey;
+      }
+    </style>
+    <script src="test.js"></script>
+  </head>
+  <body>
+    <div id='toolbar'></div>
+    <div id='content'></div>
+    <input id='result'></input>
+    <script>
+     var editor = new growlabs.ClosureEditor(document.getElementById('content'), document.getElementById('toolbar'))
+     editor.onInput = function(value) {
+      document.getElementById('result').value = value
+     }
+    </script>
+  </body>
+</html>

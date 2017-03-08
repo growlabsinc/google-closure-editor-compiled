@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>goog.editor Hello World plugins Demo</title>
+  <script src="../../node_modules/google-closure-library/closure/goog/base.js"></script>
+  <script src="../../node_modules/google-closure-library/closure/goog/demos/editor/deps.js"></script>
+  <script>
+    goog.require('goog.dom')
+    goog.require('goog.editor.Command')
+    goog.require('goog.editor.Field')
+    goog.require('goog.editor.SeamlessField')
+    goog.require('goog.editor.plugins.BasicTextFormatter')
+    goog.require('goog.editor.plugins.EnterHandler')
+    goog.require('goog.editor.plugins.HeaderFormatter')
+    goog.require('goog.editor.plugins.LinkBubble')
+    goog.require('goog.editor.plugins.LinkDialogPlugin')
+    goog.require('goog.editor.plugins.ListTabHandler')
+    goog.require('goog.editor.plugins.LoremIpsum')
+    goog.require('goog.editor.plugins.RemoveFormatting')
+    goog.require('goog.editor.plugins.SpacesTabHandler')
+    goog.require('goog.editor.plugins.UndoRedo')
+    goog.require('goog.ui.editor.DefaultToolbar')
+    goog.require('goog.ui.editor.ToolbarController')
+    goog.require('goog.html.SafeHtml');
+  </script>
+  <script type="text/javascript" src="editor.js"></script>
+  <link rel="stylesheet" href="../../node_modules/google-closure-library/closure/goog/demos/css/demo.css">
+  <link rel="stylesheet" href="../../node_modules/google-closure-library/closure/goog/css/dialog.css" />
+  <style>
+    #editMe {
+      width: 600px;
+      height: 300px;
+      background-color: white;
+      border: 1px solid grey;
+    }
+    #content {
+      background-color: white;
+    }
+  </style>
+</head>
+<body>
+  <div id='toolbar'></div>
+  <div id='content'></div>
+  <input id='result'></input>
+  <script>
+   var editor = new growlabs.ClosureEditor(document.getElementById('content'), document.getElementById('toolbar'))
+   editor.onInput = function(value) {
+    document.getElementById('result').value = value
+   }
+  </script>
+</body>
+</html>
