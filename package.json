@@ -1,0 +1,26 @@
+{
+  "name": "google-closure-editor-compiled",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/editor.bundle.js",
+  "scripts": {
+    "build": "npm run build_closure && npm run build_webpack",
+    "build_closure": "./node_modules/google-closure-library/closure/bin/build/closurebuilder.py --root=node_modules/google-closure-library/ --root=src/closureEditor --namespace=\"growlabs\" --output_mode=compiled --compiler_jar=bin/closure-compiler.jar --output_file=dist/editor.compiled.js",
+    "build_webpack": "webpack"
+  },
+  "author": "Tony Polinelli (tonypolinelli@gmail.com)",
+  "license": "ISC",
+  "dependencies": {
+    "google-closure-library": "^20170218.0.1",
+    "imports-loader": "^0.7.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.23.1",
+    "babel-loader": "^6.4.0",
+    "css-loader": "^0.26.2",
+    "file-loader": "^0.10.1",
+    "style-loader": "^0.13.2",
+    "url-loader": "^0.5.8",
+    "webpack": "^2.2.1"
+  }
+}
