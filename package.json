@@ -5,7 +5,7 @@
   "main": "dist/editor.bundle.js",
   "scripts": {
     "build": "npm run build_closure && npm run build_webpack",
-    "build_closure": "./node_modules/google-closure-library/closure/bin/build/closurebuilder.py --root=node_modules/google-closure-library/ --root=src/closureEditor --namespace=\"growlabs\" --output_mode=compiled --compiler_jar=bin/closure-compiler.jar --output_file=dist/editor.compiled.js",
+    "build_closure": "./node_modules/google-closure-library/closure/bin/build/closurebuilder.py --root=node_modules/google-closure-library/ --root=src/closureEditor --namespace=\"growlabs\" --output_mode=compiled --compiler_jar=bin/closure-compiler.jar --output_file=dist/editor.compiled.js --compiler_flags=\"--compilation_level ADVANCED_OPTIMIZATIONS\"",
     "build_webpack": "webpack"
   },
   "author": "Tony Polinelli (tonypolinelli@gmail.com)",

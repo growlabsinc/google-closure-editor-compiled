@@ -37,6 +37,8 @@ goog.require('goog.html.SafeHtml');
 
 
 function ClosureEditor(contentElem, toolbarElem) {
+  this.contentElem = contentElem
+  this.toolbarElem = toolbarElem
   this.field = new goog.editor.SeamlessField(goog.dom.getElement(contentElem))
 
   // Create and register all of the editing plugins you want to use.
@@ -90,7 +92,7 @@ ClosureEditor.prototype.onInput = function() {}
 
 ClosureEditor.prototype.onFocus = function() {}
 
-ClosureEditor.prototype.setContent = function() {
+ClosureEditor.prototype.setContent = function(html) {
   this.field.setHtml(false, html)
   this.triggerChange()
 }
@@ -102,7 +104,7 @@ ClosureEditor.prototype.getContent = function() {
 ClosureEditor.prototype.appendText = function(text) {
   let safe = goog.html.SafeHtml.htmlEscapePreservingNewlines(`\n${text}`)
   let fragment = goog.dom.safeHtmlToNode(safe)
-  let el = goog.dom.getElement(this.$refs.content)
+  let el = goog.dom.getElement(this.contentElem)
   goog.dom.append(el, fragment)
   this.triggerChange()
 }
@@ -111,6 +113,13 @@ ClosureEditor.prototype.triggerChange = function(text) {
   this.field.dispatchEvent(goog.editor.Field.EventType.CHANGE)
   this.field.dispatchEvent(goog.editor.Field.EventType.DELAYEDCHANGE)
 }
+
+ClosureEditor.prototype['onInput'] = ClosureEditor.prototype.onInput;
+ClosureEditor.prototype['onFocus'] = ClosureEditor.prototype.onFocus;
+ClosureEditor.prototype['setContent'] = ClosureEditor.prototype.setContent;
+ClosureEditor.prototype['getContent'] = ClosureEditor.prototype.getContent;
+ClosureEditor.prototype['appendText'] = ClosureEditor.prototype.appendText;
+ClosureEditor.prototype['triggerChange'] = ClosureEditor.prototype.triggerChange;
 
 goog.exportSymbol('growlabs.ClosureEditor', ClosureEditor);
 
