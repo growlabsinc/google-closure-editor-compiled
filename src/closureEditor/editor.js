@@ -82,15 +82,16 @@ function ClosureEditor(contentElem, toolbarElem) {
   new goog.ui.editor.ToolbarController(this.field, myToolbar)
 
   // Watch for field changes, to display below.
-  goog.events.listen(this.field, goog.editor.Field.EventType.DELAYEDCHANGE, () => this.onInput(this.field.getCleanContents()))
-  goog.events.listen(this.field, goog.editor.Field.EventType.FOCUS, this.onFocus)
-
+  goog.events.listen(this.field, goog.editor.Field.EventType.DELAYEDCHANGE, () => this['onInput'](this.field.getCleanContents()))
+  goog.events.listen(this.field, goog.editor.Field.EventType.FOCUS, () => this['onFocus']())
   this.field.makeEditable()
 }
 
 ClosureEditor.prototype.onInput = function() {}
 
-ClosureEditor.prototype.onFocus = function() {}
+ClosureEditor.prototype.onFocus = function() {
+  console.log('initi')
+}
 
 ClosureEditor.prototype.setContent = function(html) {
   this.field.setHtml(false, html)
