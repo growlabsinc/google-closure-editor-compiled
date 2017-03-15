@@ -89,9 +89,7 @@ function ClosureEditor(contentElem, toolbarElem) {
 
 ClosureEditor.prototype.onInput = function() {}
 
-ClosureEditor.prototype.onFocus = function() {
-  console.log('initi')
-}
+ClosureEditor.prototype.onFocus = function() {}
 
 ClosureEditor.prototype.setContent = function(html) {
   this.field.setHtml(false, html)
