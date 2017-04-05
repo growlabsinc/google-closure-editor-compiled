@@ -34,9 +34,7 @@ goog.require('goog.ui.editor.DefaultToolbar')
 goog.require('goog.ui.editor.ToolbarController')
 goog.require('goog.html.SafeHtml');
 
-
-
-function ClosureEditor(contentElem, toolbarElem) {
+function ClosureEditor(contentElem, toolbarElem, options={}) {
   this.contentElem = contentElem
   this.toolbarElem = toolbarElem
   this.field = new goog.editor.SeamlessField(goog.dom.getElement(contentElem))
@@ -84,12 +82,22 @@ function ClosureEditor(contentElem, toolbarElem) {
   // Watch for field changes, to display below.
   goog.events.listen(this.field, goog.editor.Field.EventType.DELAYEDCHANGE, () => this['onInput'](this.field.getCleanContents()))
   goog.events.listen(this.field, goog.editor.Field.EventType.FOCUS, () => this['onFocus']())
+  goog.events.listen(this.field, goog.editor.Field.EventType.LOAD, (e) => {
+    if (options['stripHtmlOnPaste']) {
+      this.field.field.addEventListener("paste", function(e) {
+          e.preventDefault();
+          var text = e.clipboardData.getData("text/plain");
+          document.execCommand("insertHTML", false, text);
+      });
+    }
+  })
+
+
   this.field.makeEditable()
 }
 
-ClosureEditor.prototype.onInput = function() {}
-
-ClosureEditor.prototype.onFocus = function() {}
+ClosureEditor.prototype.onInput = function(e) {}
+ClosureEditor.prototype.onFocus = function(e) {}
 
 ClosureEditor.prototype.setContent = function(html) {
   this.field.setHtml(false, html)
@@ -121,6 +129,4 @@ ClosureEditor.prototype['appendText'] = ClosureEditor.prototype.appendText;
 ClosureEditor.prototype['triggerChange'] = ClosureEditor.prototype.triggerChange;
 
 goog.exportSymbol('growlabs.ClosureEditor', ClosureEditor);
-
-
 
