@@ -87,6 +87,7 @@ function ClosureEditor(contentElem, toolbarElem, options={}) {
       this.field.field.addEventListener("paste", function(e) {
           e.preventDefault();
           var text = e.clipboardData.getData("text/plain");
+          text = text.replace(/\n/g, '<br>');
           document.execCommand("insertHTML", false, text);
       });
     }
