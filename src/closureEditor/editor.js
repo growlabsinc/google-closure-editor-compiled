@@ -34,10 +34,11 @@ goog.require('goog.ui.editor.DefaultToolbar')
 goog.require('goog.ui.editor.ToolbarController')
 goog.require('goog.html.SafeHtml');
 
-function ClosureEditor(contentElem, toolbarElem, options={}) {
+function ClosureEditor(contentElem, toolbarElem, options={ stripHtmlOnPaste: true }) {
   this.contentElem = contentElem
   this.toolbarElem = toolbarElem
-  this.field = new goog.editor.SeamlessField(goog.dom.getElement(contentElem))
+  var type = options['seamless'] ? goog.editor.SeamlessField : goog.editor.Field;
+  this.field = new type(goog.dom.getElement(contentElem))
 
   // Create and register all of the editing plugins you want to use.
   this.field.registerPlugin(new goog.editor.plugins.BasicTextFormatter())
@@ -85,14 +86,13 @@ function ClosureEditor(contentElem, toolbarElem, options={}) {
   goog.events.listen(this.field, goog.editor.Field.EventType.LOAD, (e) => {
     if (options['stripHtmlOnPaste']) {
       this.field.field.addEventListener("paste", function(e) {
-          e.preventDefault();
-          var text = e.clipboardData.getData("text/plain");
-          text = text.replace(/\n/g, '<br>');
-          document.execCommand("insertHTML", false, text);
+        e.preventDefault();
+        var text = e.clipboardData.getData("text/plain");
+        text = text.replace(/\n/g, '<br>');
+        e.target.ownerDocument.execCommand("insertHTML", false, text);
       });
     }
   })
-
 
   this.field.makeEditable()
 }
