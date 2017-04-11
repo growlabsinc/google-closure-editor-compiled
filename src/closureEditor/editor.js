@@ -34,7 +34,7 @@ goog.require('goog.ui.editor.DefaultToolbar')
 goog.require('goog.ui.editor.ToolbarController')
 goog.require('goog.html.SafeHtml');
 
-function ClosureEditor(contentElem, toolbarElem, options={ stripHtmlOnPaste: true }) {
+function ClosureEditor(contentElem, toolbarElem, options={ seamless: true, stripHtmlOnPaste: true }) {
   this.contentElem = contentElem
   this.toolbarElem = toolbarElem
   var type = options['seamless'] ? goog.editor.SeamlessField : goog.editor.Field;
