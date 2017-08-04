@@ -1,6 +1,4 @@
-import 'google-closure-library/closure/goog/css/dialog.css';
 import 'google-closure-library/closure/goog/css/button.css';
-import 'google-closure-library/closure/goog/css/dialog.css';
 import 'google-closure-library/closure/goog/css/linkbutton.css';
 import 'google-closure-library/closure/goog/css/menu.css';
 import 'google-closure-library/closure/goog/css/menuitem.css';
